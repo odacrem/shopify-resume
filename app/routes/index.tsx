@@ -2,6 +2,7 @@ import {useLoaderData} from '@remix-run/react'
 import * as shopify from '../shopify-client.server'
 import {default as cn} from "classnames";
 
+const SHOPIFY_COLLECTION_ID="453072388408"
 const VOXMEDIA_COLLECTION_ID="435226542392"
 const NOTABLE_WORK_COLLECTION_ID="435288932664"
 const CURRENT_PROJECTS_COLLECTION_ID="435291947320"
@@ -34,6 +35,7 @@ export const loader: LoaderFunction = async() => {
         name
         description
       }
+      ${collection_fragment("shopify", SHOPIFY_COLLECTION_ID)}
       ${collection_fragment("voxmedia", VOXMEDIA_COLLECTION_ID)}
       ${collection_fragment("notable_work", NOTABLE_WORK_COLLECTION_ID)}
       ${collection_fragment("current_projects", CURRENT_PROJECTS_COLLECTION_ID)}
@@ -134,6 +136,7 @@ export default function Index() {
       </header>
       <main className='mx-2 lg:mx-10'>
         <div className='mx-2 lg:mx-5 flex flex-col space-y-20'>
+          <Experience className='-mb-20' collection={data.shopify} />
           <Experience collection={data.voxmedia} />
           <Experience collection={data.current_projects} />
           <Experience collection={data.notable_work} />
